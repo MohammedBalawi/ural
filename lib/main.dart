@@ -82,7 +82,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: const Text('Help Tracker')),
+        appBar: AppBar(title: const Text('Help ')),
         body: Center(
           child: ElevatedButton(
             onPressed: openNotificationAccessSettings,
