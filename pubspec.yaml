@@ -48,13 +48,14 @@ dependencies:
   device_info_plus: ^9.1.0
   contacts_service: ^0.6.3
   path: ^1.9.0
-#  ffmpeg_kit_flutter: ^6.0.3
   supabase_flutter: ^2.8.4
+
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
