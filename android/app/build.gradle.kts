@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.helps"
-    namespace 'com.flutter.notificationlistener'
+    namespace ='com.flutter.notificationlistener'
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
