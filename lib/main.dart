@@ -71,13 +71,16 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  void openNotificationAccessSettings() {
-    const intent = AndroidIntent(
-      action: 'android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS',
-      flags: <int>[Flag.FLAG_ACTIVITY_NEW_TASK],
-    );
-    intent.launch();
+  void openNotificationSettings() {
+    if (Platform.isAndroid) {
+      const AndroidIntent intent = AndroidIntent(
+        action: 'android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS',
+        flags: <int>[Flag.FLAG_ACTIVITY_NEW_TASK],
+      );
+      intent.launch();
+    }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +89,7 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(title: const Text('Help ')),
         body: Center(
           child: ElevatedButton(
-            onPressed: openNotificationAccessSettings,
+            onPressed: openNotificationSettings,
             child: const Text('تفعيل صلاحية الإشعارات'),
           ),
         ),
